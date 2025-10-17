@@ -15,6 +15,7 @@
 }
 body{background:var(--bg-light);color:var(--dark);line-height:1.6;overflow-x:hidden;}
 html{scroll-behavior:smooth;}
+
 /* Scrollbar */
 ::-webkit-scrollbar{width:10px;}
 ::-webkit-scrollbar-track{background:var(--bg-light);}
@@ -33,18 +34,11 @@ html{scroll-behavior:smooth;}
 .logo{font-size:1.8rem;font-weight:800;background:linear-gradient(to right,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;transition:var(--transition);}
 .logo:hover{transform:scale(1.05);}
 .nav-links{display:flex;list-style:none;gap:10px;}
-.nav-links li{position:relative;}
 .nav-links li a{text-decoration:none;color:var(--dark);font-weight:600;padding:10px 20px;border-radius:30px;transition:var(--transition);display:flex;align-items:center;justify-content:space-between;}
 .nav-links li a:hover{background:rgba(135,206,235,0.1);color:var(--primary);}
 .nav-links li a.active{background:linear-gradient(to right,var(--primary),var(--primary-dark));color:var(--white);box-shadow:0 5px 15px rgba(135,206,235,0.3);}
-.nav-links li .dropdown{display:none;flex-direction:column;position:absolute;top:50px;left:0;background:var(--white);padding:10px 0;box-shadow:0 5px 15px rgba(0,0,0,0.1);border-radius:10px;min-width:150px;z-index:500;}
-.nav-links li.active-dropdown .dropdown{display:flex;}
-.nav-links li .dropdown li a{padding:10px 20px;border-radius:0;white-space:nowrap;}
-.nav-links li .dropdown li a:hover{background:var(--primary);color:var(--white);}
 .menu-toggle{display:none;font-size:1.8rem;cursor:pointer;color:var(--dark);transition:var(--transition);}
 .menu-toggle:hover{color:var(--primary);}
-.nav-links li a i{margin-left:5px;font-size:0.8rem;transition:transform 0.3s ease;}
-.nav-links li.active-dropdown > a i{transform:rotate(180deg);}
 
 /* ===== HOME ===== */
 .home {height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:skyblue;color:var(--white);margin-top:70px;position:relative;overflow:hidden;}
@@ -60,12 +54,13 @@ html{scroll-behavior:smooth;}
 .social-icons a:hover{background:var(--white);color:var(--primary);transform:translateY(-5px);}
 
 /* ===== ABOUT ===== */
-.about-container{display:flex;gap:50px;align-items:flex-start;flex-wrap:wrap;}
-.about-photo img{width:100%;max-width:300px;aspect-ratio:1/1;object-fit:cover;border-radius:15px;box-shadow:var(--shadow);}
-.about-info{flex:1;min-width:300px;}
-.about-info p{margin-bottom:20px;line-height:1.6;color:var(--text-light);}
-.biodata-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 30px;}
-.biodata-grid div{font-size:1rem;color:var(--dark);}
+.about-container{display:flex; flex-wrap:wrap; gap:30px; align-items:center; justify-content:center;}
+.about-photo{flex:1; min-width:250px; text-align:center;}
+.about-photo img{width:100%; max-width:300px; border-radius:15px; box-shadow:var(--shadow);}
+.about-info{flex:1; min-width:250px;}
+.about-info p{margin-bottom:20px; color:var(--text-light); text-align:center;}
+.biodata-grid{display:grid; grid-template-columns:1fr 1fr; gap:15px 30px; justify-items:center;}
+.biodata-grid div{font-size:1rem; color:var(--dark); text-align:center;}
 
 /* ===== RESUME ===== */
 .resume-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
@@ -107,22 +102,29 @@ footer a:hover{color:var(--primary);}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:60px;right:20px;width:200px;background:rgba(255,255,255,0.95);padding:20px;border-radius:10px;box-shadow:0 10px 25px rgba(0,0,0,0.1);}
-  .nav-links.active{display:flex;}
-  .nav-links li{margin-bottom:10px;}
-  .menu-toggle{display:block;}
-  .about-container{flex-direction:column;gap:30px;}
-  .about-photo img {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    object-fit: cover;
-    margin: 0 auto;
-    display: block;
+  .about-container{
+    flex-direction:column;
+    align-items:center;
+    gap:30px;
+    text-align:center;
   }
-  .home-content h1{font-size:3rem;}
-  .home-content p{font-size:1.5rem;}
-  .home{background-attachment:scroll;}
+  .about-photo, .about-info{
+    width:100%;
+  }
+  .about-photo img{
+    max-width:300px;
+    width:80%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+  }
+  .biodata-grid{
+    grid-template-columns:1fr; /* setiap item 1 baris */
+    gap:15px 0;
+  }
+  .biodata-grid div{
+    text-align:center;
+  }
 }
 
 </style>
@@ -137,7 +139,7 @@ footer a:hover{color:var(--primary);}
     <li><a href="#home" class="active">Beranda</a></li>
     <li><a href="#about">Tentang</a></li>
     <li><a href="#resume">Riwayat</a></li>
-    <li><a href="#portfolio">Project</a>
+    <li><a href="#portfolio">Project</a></li>
     <li><a href="#contact">Kontak</a></li>
   </ul>
 </nav>
@@ -149,8 +151,8 @@ footer a:hover{color:var(--primary);}
     <p>UI/UX Designer</p>
     <a href="#contact" class="cta-button">Hubungi Saya</a>
     <div class="social-icons">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.instagram.com/blu.seanyss?igsh=YTAwajhramx6dzE2"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/anisa-siti-nurfajriyanti-7b745738a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
     </div>
   </div>
 </section>
@@ -194,7 +196,7 @@ footer a:hover{color:var(--primary);}
       <div class="resume-item">
         <h3>Pendidikan</h3>
         <ul class="resume-list">
-          <li><div class="year">2023 - 2026</div><div class="school">SMKN 1 Kawali - Pengembangan Perangkat Lunak dan Gim</div></li>
+          <li><div class="year">2023 - 2026</div><div class="school">SMKN 1 Kawali - PPLG</div></li>
           <li><div class="year">2020 - 2023</div><div class="school">SMPN 2 Panjalu</div></li>
         </ul>
       </div>
@@ -217,15 +219,15 @@ footer a:hover{color:var(--primary);}
     <div class="portfolio-container">
       <div class="portfolio-item">
         <div class="portfolio-image"><img src="img/webren.png" alt="Website Rental Motor"></div>
-        <div class="portfolio-content"><h3>Website Rental Motor</h3><p>Sistem penyewaan motor online dengan fitur login, pemesanan, dan dashboard admin.</p><a href="#" class="portfolio-link">Lihat</a></div>
+        <div class="portfolio-content"><h3>Website Rental Motor</h3><p>Sistem penyewaan motor online dengan fitur login, pemesanan, dan dashboard admin.</p><a href="http://sewa_motor.test/auth/login.php" class="portfolio-link">Lihat</a></div>
       </div>
       <div class="portfolio-item">
         <div class="portfolio-image"><img src="img/en.png" alt="Website E-commerce"></div>
-        <div class="portfolio-content"><h3>Website E-commerce</h3><p>Website toko online dengan fitur produk, keranjang belanja, dan pembayaran digital.</p><a href="#" class="portfolio-link">Lihat</a></div>
+        <div class="portfolio-content"><h3>Website E-commerce</h3><p>Website toko online dengan fitur produk, keranjang belanja, dan pembayaran digital.</p><a href="http://masuk.iceiy.com/" class="portfolio-link">Lihat</a></div>
       </div>
       <div class="portfolio-item">
         <div class="portfolio-image"><img src="img/ju.png" alt="Desain Website Profile Jurusan"></div>
-        <div class="portfolio-content"><h3>Desain Website Profile Jurusan</h3><p>Desain website profil jurusan menggunakan Figma.</p><a href="#" class="portfolio-link">Lihat</a></div>
+        <div class="portfolio-content"><h3>Desain Website Profile Jurusan</h3><p>Desain website profil jurusan menggunakan Figma.</p><a href="https://www.figma.com/design/FujydqHx4W2lotDXKIzDP0/Project-Jurusan?node-id=0-1&p=f&t=DXlc90Ijmy7yOEG8-0" class="portfolio-link">Lihat</a></div>
       </div>
     </div>
   </div>
@@ -235,14 +237,23 @@ footer a:hover{color:var(--primary);}
 <section id="contact" class="section contact">
   <div class="container contact-container">
     <h2 class="section-title">Kontak Saya</h2>
-    <form class="contact-form">
-      <div class="form-group full-width"><label>Nama</label><input type="text" placeholder="Nama Anda"></div>
-      <div class="form-group full-width"><label>Email</label><input type="email" placeholder="Email Anda"></div>
-      <div class="form-group full-width"><label>Pesan</label><textarea placeholder="Tulis pesan Anda"></textarea></div>
-      <div class="form-group full-width"><button type="submit" class="btn">Kirim Pesan</button></div>
-    </form>
+    <div class="contact-list" style="display:flex;flex-direction:column;gap:20px;font-size:1.1rem;">
+      <a href="https://www.instagram.com/blu.seanyss?igsh=YTAwajhramx6dzE2" target="_blank" style="display:flex;align-items:center;gap:10px;color:var(--dark);text-decoration:none;">
+        <i class="fab fa-instagram" style="color:#E1306C;"></i> @blu.seanyss
+      </a>
+      <a href="mailto:anisasitinjrfajriyanti@email.com" style="display:flex;align-items:center;gap:10px;color:var(--dark);text-decoration:none;">
+        <i class="fas fa-envelope" style="color:#3498db;"></i> anisasitinjrfajriyanti@email.com
+      </a>
+      <a href="tel:+6282123008119" style="display:flex;align-items:center;gap:10px;color:var(--dark);text-decoration:none;">
+        <i class="fas fa-phone" style="color:#2ecc71;"></i> +62 821 2300 8119
+      </a>
+      <a href="https://www.linkedin.com/in/anisa-siti-nurfajriyanti-7b745738a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" style="display:flex;align-items:center;gap:10px;color:var(--dark);text-decoration:none;">
+        <i class="fab fa-linkedin" style="color:#0e76a8;"></i> LinkedIn
+      </a>
+    </div>
   </div>
 </section>
+
 
 <!-- FOOTER -->
 <footer>
@@ -271,19 +282,6 @@ navItems.forEach(link => link.addEventListener('click', () => {
   link.classList.add('active');
 }));
 
-// Dropdown toggle mobile
-const dropdownLinks = document.querySelectorAll('.nav-links li a');
-dropdownLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    const parent = link.parentElement;
-    const dropdown = parent.querySelector('.dropdown');
-    if(dropdown){
-      e.preventDefault();
-      parent.classList.toggle('active-dropdown');
-    }
-  });
-});
-
 // Animasi fade-in Home section
 window.addEventListener('load', () => {
   document.querySelector('.home-content').classList.add('show');
@@ -292,4 +290,3 @@ window.addEventListener('load', () => {
 
 </body>
 </html>
-
